@@ -2,7 +2,7 @@
 Raku code examples
 
 
-# Print n-times 
+## Print n-times 
 
 ```raku
 
@@ -74,6 +74,8 @@ say @vals.WHAT;
 say $word.WHAT;
 say $n.WHAT;
 
+say @vals.^name;
+say $word.^name;
 say $n.^name;
 ```
 
