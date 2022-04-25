@@ -4,14 +4,15 @@ Raku code examples
 ## String concatenation
 
 ```raku
-
 my $w1 = 'old';
 my $w2 = 'falcon';
 
 my $w = $w1 ~ " " ~ $w2;
 say $w;
 
-my $r = sprintf "$w1 $w2";
+say "$w1 $w2";
+
+my $r = sprintf "%s %s", $w1, $w2;
 say $r;
 ```
 
