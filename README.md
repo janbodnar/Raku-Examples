@@ -4,7 +4,7 @@ Raku code examples
 
 ## Mutators 
 
-```
+```raku
 # a mutator is a procedure that modifies
 # the state of an object
 
