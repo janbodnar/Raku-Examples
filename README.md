@@ -1,7 +1,10 @@
 # Raku-Examples
 Raku code examples
 
-## if/elsif/else conditions
+## Conditions
+
+`if/elsif/else` keywords  
+parantheses not needed  
 
 ```raku
 my @vals = <0 -1 -2 3 11 1 2 -4>;
