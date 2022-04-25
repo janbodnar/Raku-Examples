@@ -20,7 +20,7 @@ repeat {
 
 ## Conditions
 
-`if/elsif/else` keywords  
+`if/elsif/else` & `unless` keywords  
 parantheses not needed  
 
 ```raku
