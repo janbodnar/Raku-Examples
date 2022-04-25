@@ -1,8 +1,18 @@
 # Input/Output
 
+## Read cli input
 
 ```raku
 
+print 'Enter your name: ';
+my $line = get;
+
+say "Hello $line!";
+```
+
+## Read file
+
+```raku
 my $fname = 'words.txt';
 
 # old school
