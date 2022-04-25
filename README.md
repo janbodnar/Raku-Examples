@@ -57,6 +57,14 @@ for @vals -> $val {
 ## Types
 
 ```raku
+my $x = 12;
+my $w = 'cup';
+
+say 'integer' if $x.WHAT === Int;
+say 'string' if $w.WHAT === Str;
+```
+
+```raku
 
 my @vals = (1, 2, 3, 4);
 my $word = "falcon";
@@ -67,9 +75,9 @@ say $word.WHAT;
 say $n.WHAT;
 
 say $n.^name;
+```
 
-say '-------------------------';
-
+```raku
 my @data = 'storm', 1, 1.3, True, 1/2;
 
 for @data -> $e {
