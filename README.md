@@ -9,6 +9,8 @@ my $word = 'falcon';
 
 say "$word\n" x 5;
 
+say '--------------------';
+
 my $n = 0;
 repeat {
     say 'falcon';
