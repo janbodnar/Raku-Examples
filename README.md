@@ -7,13 +7,13 @@ Raku code examples
 my $w1 = 'old';
 my $w2 = 'falcon';
 
-my $w = $w1 ~ " " ~ $w2;
-say $w;
+say $w1, " ", $w2;
+
+say $w1 ~ " " ~ $w2;
 
 say "$w1 $w2";
 
-my $r = sprintf "%s %s", $w1, $w2;
-say $r;
+say sprintf "%s %s", $w1, $w2;
 ```
 
 
