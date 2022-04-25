@@ -1,6 +1,21 @@
 # Raku-Examples
 Raku code examples
 
+# Print n-times 
+
+```raku
+
+my $word = 'falcon';
+
+say "$word\n" x 5;
+
+my $n = 0;
+repeat {
+    say 'falcon';
+    $n++;
+} while $n <= 5;
+```
+
 ## Conditions
 
 `if/elsif/else` keywords  
