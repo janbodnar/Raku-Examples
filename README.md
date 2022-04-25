@@ -7,6 +7,21 @@ Raku code examples
 parantheses not needed  
 
 ```raku
+my $age = 45;
+
+if $age >= 18 {
+  say 'adult';
+}
+
+say 'adult' if $age >= 18;
+
+unless $age < 18 {
+  say 'adult';
+}
+```
+
+
+```raku
 my @vals = <0 -1 -2 3 11 1 2 -4>;
 
 for @vals -> $val {
