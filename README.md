@@ -1,6 +1,27 @@
 # Raku-Examples
 Raku code examples
 
+## Variabl interpolation
+
+```raku
+my $name = 'John Doe';
+my $age = 34;
+
+say "$name is $age years old";
+
+my @words = <sky cup touch war cloud noise>;
+
+# not interpolated
+say "@words";
+
+# interpolated
+say "@words[]";
+
+my $x = 11;
+my $y = 12;
+
+say "\$x + \$y = $($x + $y)";
+```
 
 ## Print n-times 
 
