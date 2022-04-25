@@ -1,6 +1,7 @@
 # Raku-Examples
 Raku code examples
 
+
 # Print n-times 
 
 ```raku
@@ -50,6 +51,36 @@ for @vals -> $val {
   } else {
     say "zero";
   }
+}
+```
+
+## Types
+
+```raku
+
+my @vals = (1, 2, 3, 4);
+my $word = "falcon";
+my $n = 12;
+
+say @vals.WHAT;
+say $word.WHAT;
+say $n.WHAT;
+
+say $n.^name;
+
+say '-------------------------';
+
+my @data = 'storm', 1, 1.3, True, 1/2;
+
+for @data -> $e {
+
+  say "integer" if $e.isa(Int);
+  say "string" if $e.isa(Str);
+  say "real" if $e.isa(Real);
+  say "boolean" if $e.isa(Bool);
+  say "rational" if $e.isa(Rat);
+
+  say '-------';
 }
 ```
 
