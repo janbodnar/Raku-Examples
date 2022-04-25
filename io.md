@@ -15,6 +15,7 @@ $fh.close;
 say '-------------------------';
 
 # via attributes
+# file handles automatically closed
 $contents = $fname.IO.slurp;
 say $contents;
 
