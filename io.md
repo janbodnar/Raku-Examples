@@ -25,3 +25,19 @@ say '-------------------------';
 $contents = slurp $fname;
 say $contents;
 ```
+
+## Line by line
+
+```raku
+my $fname = 'words.txt';
+
+for $fname.IO.lines -> $line {
+    say $line;
+}
+
+my @lines = $fname.IO.lines;
+say @lines;
+say "@lines[]";
+
+@lines.say;
+```
