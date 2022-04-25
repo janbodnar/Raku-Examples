@@ -1,7 +1,22 @@
 # Raku-Examples
 Raku code examples
 
-## Variabl interpolation
+## String concatenation
+
+```raku
+
+my $w1 = 'old';
+my $w2 = 'falcon';
+
+my $w = $w1 ~ " " ~ $w2;
+say $w;
+
+my $r = sprintf "$w1 $w2";
+say $r;
+```
+
+
+## Variable interpolation
 
 ```raku
 my $name = 'John Doe';
