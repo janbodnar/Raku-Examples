@@ -2,6 +2,19 @@
 
 Arrays are mutable data structures.  They are created with the `@` sigil.  
 
+
+array vs list  
+
+```raku
+# array
+my @vals = (1, 2, 3, 4, 5);
+say @vals.^name;
+
+# list
+my $vals = (1, 2, 3, 4, 5);
+say $vals.^name;
+```
+
 `elems` returns the size of the list  
 
 ```raku
