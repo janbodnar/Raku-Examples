@@ -44,10 +44,10 @@ say @vals[*-1];
 keys & values  
 
 ```raku
-my @vals = <sky blue rock forest book nice cool nap>;
+my @words = <sky blue rock forest book nice cool nap>;
 
-say @vals.keys;
-say @vals.values;
+say @words.keys;
+say @words.values;
 ```
 
 
@@ -61,7 +61,7 @@ for @vals -> $val {
 }
 ```
 
-travering with loop  
+traversing with loop  
 
 ```raku
 my @vals = (1, 2, 3, 4, 5);
