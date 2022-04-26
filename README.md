@@ -201,3 +201,18 @@ say '------------------------------';
 @vals.=sort;
 say @vals;
 ```
+
+## Fold/reduce
+
+Fold/reduce is a terminal operation that aggregates list values into a single value.  
+
+```raku
+
+my @numbers = <1 2 3 4 5 6>;
+
+say [+] @numbers;
+say [+] 0, |@numbers;
+
+say reduce { $^a + $^b }, 0, |@numbers;
+say @numbers.reduce: {$^a + $^b}
+```
