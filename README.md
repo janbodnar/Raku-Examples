@@ -225,9 +225,9 @@ Sequncer/pipe operation passes processed data from one function to another funct
 my @array = (1, 2, 3, 4, 5);
 @array ==> sum() ==> say();
 
-<people of earth>
-    ==> map({ .tc })
-    ==> grep /<[PE]>/
+<people cup of mop a earth sum talk bye buy car lot pot smell falcon>
+    ==> grep /^...$/
     ==> sort()
+    ==> map({ .tc })
     ==> say();
 ```
