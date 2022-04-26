@@ -16,6 +16,25 @@ say "$w1 $w2";
 say sprintf "%s %s", $w1, $w2;
 ```
 
+## Assign vs bind
+
+```raku
+
+# assignment with =
+my Int $val = 23;
+say $val;
+
+$val = 24;
+say $val;
+
+# binding with :=
+# cannot be changed
+my Str $word := 'falcon';
+say $word;
+
+# $word = 'eagle';
+# say $word;
+```
 
 ## Variable interpolation
 
