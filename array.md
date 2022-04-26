@@ -19,3 +19,16 @@ say @vals[2];
 say @vals.head;
 say @vals.tail;
 ```
+
+typed arrays; push & prepend methods  
+
+```raku
+my Int @vals = (1, 2, 3, 4, 5);
+@vals.push(6);
+@vals.push(7);
+@vals.push(8);
+@vals.prepend(0);
+@vals.prepend(-1);
+
+say @vals;
+```
