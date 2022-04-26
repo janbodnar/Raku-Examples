@@ -23,6 +23,24 @@ say @vals.elems;
 say @vals;
 ```
 
+get first/last elements
+
+```raku
+my @vals = <sky blue rock forest book nice cool nap>;
+say @vals.first;
+say @vals.first :end;
+
+say '----------------------';
+
+say @vals.head;
+say @vals.tail;
+
+say '----------------------';
+
+say @vals[0];
+say @vals[*-1];
+```
+
 for loop  
 
 ```raku
