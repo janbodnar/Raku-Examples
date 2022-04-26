@@ -93,6 +93,8 @@ for @vals -> $val {
 
 ## Types
 
+`WHAT` attribute  
+
 ```raku
 my $x = 12;
 my $w = 'cup';
@@ -100,6 +102,32 @@ my $w = 'cup';
 say 'integer' if $x.WHAT === Int;
 say 'string' if $w.WHAT === Str;
 ```
+
+booleans  
+
+```raku
+
+say so True;
+say so False;
+say so "";
+say so " ";
+say so "\n";
+say so ();
+say so (1,);
+
+say 3 > 6;
+
+say '-------------------------';
+
+say [1, 2, 3] eqv [1, 2, 3];
+say [1, 2, 3] eqv [1, 2, [3]];
+say Any eqv Any;
+say 1 eqv 2;
+say 1 eqv 1.0;
+say (1...100) eqv (1...100);
+```
+
+`WHAT` & `name`
 
 ```raku
 
