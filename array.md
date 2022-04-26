@@ -41,6 +41,16 @@ say @vals[0];
 say @vals[*-1];
 ```
 
+keys & values  
+
+```raku
+my @vals = <sky blue rock forest book nice cool nap>;
+
+say @vals.keys;
+say @vals.values;
+```
+
+
 for loop  
 
 ```raku
