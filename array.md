@@ -33,6 +33,18 @@ for @vals -> $val {
 }
 ```
 
+travering with loop  
+
+```raku
+my @vals = (1, 2, 3, 4, 5);
+my $n = @vals.elems;
+
+loop (my $i=0; $i < $n; $i++) {
+  say @vals[$i];
+}
+```
+
+
 Indexing & head & tail  
 
 ```raku
