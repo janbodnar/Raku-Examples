@@ -50,6 +50,18 @@ say @words.keys;
 say @words.values;
 ```
 
+typed arrays  
+
+```raku
+my Str @words = 'sky', 'blue', 'rock', 'forest', 'book', 'nice', 'cool', 'nap';
+say @words.WHAT;
+
+my @words2 of Str = 'sky', 'blue', 'rock', 'forest', 'book', 'nice', 'cool', 'nap';
+say @words2.WHAT;
+
+my @words3 is Array[Str] = 'sky', 'blue', 'rock', 'forest', 'book', 'nice', 'cool', 'nap';
+say @words3.WHAT;
+```
 
 for loop  
 
