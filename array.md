@@ -29,8 +29,14 @@ define arrays with sequence & range operators
 my @vals = 1..10;
 say @vals;
 
-my @vals2 = 1,3...20;
+my @vals2 = (1..10).reverse;
 say @vals2;
+
+my @vals3 = 1,3...20;
+say @vals3;
+
+my @vals4 = 'a'..'z';
+say @vals4;
 ```
 
 get first/last elements
