@@ -23,6 +23,16 @@ say @vals.elems;
 say @vals;
 ```
 
+for loop  
+
+```raku
+my @vals = (1, 2, 3, 4, 5);
+
+for @vals -> $val {
+  say $val;
+}
+```
+
 Indexing & head & tail  
 
 ```raku
