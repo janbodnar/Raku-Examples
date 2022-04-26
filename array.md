@@ -23,6 +23,16 @@ say @vals.elems;
 say @vals;
 ```
 
+define arrays with sequence & range operators  
+
+```raku
+my @vals = 1..10;
+say @vals;
+
+my @vals2 = 1,3...20;
+say @vals2;
+```
+
 get first/last elements
 
 ```raku
