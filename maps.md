@@ -14,3 +14,21 @@ say %h.values;
 
 say %h.gist;
 ```
+
+## Sorting 
+
+```raku
+#!/usr/bin/rakudo
+
+my %h is Map = 1, 'sky', 2, 'cloud', 
+    3, 'cup', 4, 'war', 5, 'water', 6, 'atom';
+
+
+say %h.sort;
+say %h.sort({$^b cmp $^a});
+
+say '-----------------------';
+
+say %h.sort: *.values;
+say %h.sort(*.values).reverse;
+```
