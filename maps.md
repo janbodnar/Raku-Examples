@@ -32,3 +32,14 @@ say '-----------------------';
 say %h.sort: *.values;
 say %h.sort(*.values).reverse;
 ```
+
+## Filter with grep
+
+```raku
+#!/usr/bin/rakudo
+
+my %h is Map = 1, 'sky', 2, 'cloud', 
+    3, 'cup', 4, 'war', 5, 'water', 6, 'atom';
+
+say %h.grep({ $_.value.starts-with('w') });
+```
