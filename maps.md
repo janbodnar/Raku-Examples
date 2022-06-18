@@ -1,5 +1,7 @@
 # Maps
 
+Maps are immutable hashes.  
+
 ```raku
 my %h = Map.new(1, 'sky', 2, 'cloud', 
     3, 'cup', 4, 'war', 5, 'water');
