@@ -25,6 +25,14 @@ say $words.sort: { $^b leg $^a };
 say $words.sort: { .chars };
 ```
 
+## Sort multiple criteria
+
+```raku
+my @words = <snake Sun be some unit word Earth to sky falcon>;
+put @words.sort:{.chars, .lc};
+put sort -> $x { $x.chars, $x.lc }, @words;
+```
+
 ## Sort objects
 
 ```raku
