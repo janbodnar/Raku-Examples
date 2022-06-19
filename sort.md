@@ -25,6 +25,32 @@ say $words.sort: { $^b leg $^a };
 say $words.sort: { .chars };
 ```
 
+## Sort objects
+
+```raku
+#!/usr/bin/rakudo
+
+class User {
+   has Str $.name;
+   has Str $.occupation;
+
+   method Str {
+        "{$.name} the {$.occupation}"
+   }
+}
+
+my $u1 = User.new(name => "John Doe", occupation => 'gardener');
+my $u2 = User.new(name => "Roger Roe", occupation => 'driver');
+
+my @team = $u1, $u2;
+
+my @ordByName = @team.sort(*.name)».name;
+my @ordByOccup = @team.sort(*.occupation);
+
+say @ordByName.join(', ');
+say @ordByOccup.join(', ');
+```
+
 ## Sort list of hashes
 
 ```raku
