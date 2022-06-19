@@ -58,6 +58,30 @@ my $y = 12;
 say "\$x + \$y = $($x + $y)";
 ```
 
+## Pairs
+
+```raku
+my $p = Pair.new('key', 'value');
+
+say $p;
+say $p.key;
+say $p.value;
+
+say $p.WHAT;
+
+my $p2 = 1 => 'book';
+say $p2.WHAT;
+say $p2;
+
+my $p3 = :one<'book'>;
+say $p3.WHAT;
+say $p3;
+
+my $p4 = :name('John Doe');
+say $p4.WHAT;
+say $p4.fmt("%s is %s");
+```
+
 ## Print n-times 
 
 ```raku
