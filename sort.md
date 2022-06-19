@@ -4,7 +4,7 @@
 
 ```raku
 my $vals = <8 0 -1 2 1 -3 3 5 7 4>;
-my $words = <"sky" "no" "boot" "certain" "universe" "fifty">;
+my $words = <sky no boot certain universe fifty>;
 
 say $vals.sort;
 say $vals.sort: +*;
@@ -36,7 +36,6 @@ put sort -> $x { $x.chars, $x.lc }, @words;
 ## Sort objects
 
 ```raku
-#!/usr/bin/rakudo
 
 class User {
    has Str $.name;
