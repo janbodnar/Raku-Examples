@@ -255,3 +255,41 @@ my @array = (1, 2, 3, 4, 5);
     ==> map({ .tc })
     ==> say();
 ```
+
+## Async fetcher
+
+```raku
+use HTTP::UserAgent;
+use HTML::Parser;
+
+sub fetch-title($url) {
+    my $ua = HTTP::UserAgent.new;
+    my $response = $ua.get($url);
+
+    return "Failed to fetch $url" unless $response.is-success;
+
+    my $html = $response.content;
+    my $parser = HTML::Parser.new;
+    my $title = $parser.parse($html).head.title;
+
+    return $title // "No title found for $url";
+}
+
+my @urls = (
+    'https://raku.org',
+    'https://www.perl.org',
+    'https://www.wikipedia.org',
+);
+
+my @promises = @urls.map: -> $url {
+    start {
+        say "Fetching $url...";
+        my $title = fetch-title($url);
+        say "$url → $title";
+    }
+};
+
+await @promises;
+say "✅ All titles fetched.";
+```
+
