@@ -138,7 +138,7 @@ say @list-of-lists.sort(*[1]); # [[3, 1], [1, 2], [2, 3]]
 
 # Sort by number of 'e's in a string
 my @words = <cheese beer coffee tea>;
-sub count-e(Str $s) { $s.count('e') }
+sub count-e(Str $s) { $s.comb('e').elems }
 say @words.sort(&count-e);
 
 # Sort by length then alphabetically for strings of same length
@@ -146,7 +146,7 @@ my @words2 = <beta alpha gamma delta>;
 say @words2.sort({ .chars, .Str });
 
 # Using .& with a subroutine name
-sub by-length { .chars }
+sub by-length($s) { $s.chars }
 say @words2.sort(&by-length);
 ```
 
