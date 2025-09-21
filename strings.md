@@ -551,6 +551,11 @@ my $result = @lines.join("\n");
 say $result.lines.elems;
 ```
 
+String concatenation in loops can be inefficient for large texts. The  
+join method is more efficient as it allocates memory once rather than  
+repeatedly growing strings. For performance-critical applications, use  
+join or build arrays first, then join them.  
+
 ## String parsing
 
 Parsing structured text data.  
@@ -586,6 +591,11 @@ END
 say parse-key-value($config);
 ```
 
+Text parsing breaks structured data into usable components. The CSV parser  
+handles comma-separated values with trimming. The key-value parser ignores  
+comments and empty lines while extracting configuration data. Regex  
+patterns help identify and extract the relevant parts.  
+
 ## String generators
 
 Creating strings with specific patterns.  
@@ -610,6 +620,11 @@ say generate-password();
 say generate-password(16);
 say generate-uuid();
 ```
+
+String generators create random or patterned strings programmatically.  
+The password generator uses `pick` to randomly select characters from  
+different character sets. The UUID generator creates hexadecimal  
+identifiers with proper formatting for unique identification.  
 
 ## String stream processing
 
@@ -641,6 +656,11 @@ say count-words($sample);
 say most-common-words($sample, 3);
 ```
 
+Stream processing handles large texts by processing words one at a time  
+rather than loading everything into memory. The word counter removes  
+punctuation and normalizes case. The `sort(-*.value)` sorts by frequency  
+in descending order for finding most common words.  
+
 ## Advanced string manipulation
 
 Complex string transformations and operations.  
@@ -668,6 +688,11 @@ say snake-to-camel('snake_case_string');
 say title-case('the quick brown fox');
 say reverse-words('The quick brown fox');
 ```
+
+Advanced string manipulation combines regex and string methods for complex  
+transformations. Case conversion functions handle programming conventions.  
+The regex `(<[A..Z]>)` matches uppercase letters for camelCase  
+conversion. These utilities are essential for code generators and formatters.  
 
 ## String tokenization
 
@@ -704,3 +729,349 @@ say tokenize($sample);
 say extract-numbers($sample);
 say extract-emails($sample);
 ```
+
+Tokenization breaks text into meaningful components for analysis. The  
+tokenizer separates words from punctuation while preserving both. The  
+`comb` method with regex patterns extracts specific data types like  
+numbers and emails. This is fundamental for lexical analysis and parsing.  
+
+## String interpolation with complex expressions
+
+Advanced interpolation techniques with nested expressions and formatting.  
+
+```raku
+my @items = <apple banana cherry>;
+my %prices = apple => 1.50, banana => 0.75, cherry => 2.25;
+
+say "Shopping list: {@items.map({\"$_ (${%prices{$_}})\"}).join(', ')}";
+
+my $date = DateTime.now;
+my $user = 'Alice';
+my $count = 42;
+
+say "Hello $user! Today is {$date.month-name} {$date.day}, " ~
+    "and you have {$count > 1 ?? 'multiple items' !! 'one item'} waiting.";
+
+my @matrix = [1, 2, 3], [4, 5, 6];
+say "Matrix sum: {[+] @matrix.map({[+] $_})}";
+```
+
+Complex interpolation combines method calls, conditionals, and nested  
+expressions within strings. The `map` method transforms arrays, while  
+conditional expressions use the ternary operator. Brackets ensure  
+proper evaluation order in complex expressions.  
+
+## String mutation methods
+
+String transformation using in-place modification techniques.  
+
+```raku
+my $text = 'Hello World';
+
+# Using method chaining for transformations
+my $processed = $text.uc.subst(' ', '_').subst(/L/, 'X', :global);
+say $processed;
+
+# Character-level transformations
+sub rot13($str) {
+    $str.trans('A..Za..z' => 'N..ZA..Mn..za..m');
+}
+
+sub caesar-cipher($str, $shift) {
+    my $alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    my $shifted = $alpha.substr($shift) ~ $alpha.substr(0, $shift);
+    $str.uc.trans($alpha => $shifted);
+}
+
+say rot13('Hello World');
+say caesar-cipher('HELLO', 3);
+```
+
+String mutation applies multiple transformations in sequence. Method  
+chaining enables fluent transformations. The `trans` method performs  
+character translation, useful for ciphers and character mapping. These  
+techniques create efficient string processing pipelines.  
+
+## String character encoding conversions
+
+Converting between different character encodings and normalization forms.  
+
+```raku
+my $text = "Héllo Wörld! 你好世界";
+
+# Different encoding formats
+my $utf8 = $text.encode('utf8');
+my $utf16 = $text.encode('utf16');
+my $latin1 = $text.encode('latin1', :replacement);
+
+say "UTF-8 bytes: {$utf8.elems}";
+say "UTF-16 bytes: {$utf16.elems}";
+say "Latin-1 bytes: {$latin1.elems}";
+
+# Base64 encoding for data transmission
+my $base64 = $utf8.encode('base64');
+say "Base64: $base64";
+
+# Handling encoding errors gracefully
+sub safe-encode($text, $encoding) {
+    try {
+        return $text.encode($encoding);
+    }
+    CATCH {
+        return $text.encode($encoding, :replacement);
+    }
+}
+
+say safe-encode("Unicode: ♠♣♥♦", 'ascii');
+```
+
+Character encoding conversion handles international text across different  
+systems. The `:replacement` option substitutes invalid characters with  
+safe alternatives. Base64 encoding enables safe transmission of binary  
+data. Error handling ensures robust text processing.  
+
+## String palindrome checking
+
+Detecting palindromes with various normalization options.  
+
+```raku
+sub is-palindrome($str) {
+    my $normalized = $str.lc.subst(/\W/, '', :global);
+    $normalized eq $normalized.flip;
+}
+
+sub is-word-palindrome($str) {
+    my @words = $str.lc.words;
+    @words eq @words.reverse;
+}
+
+sub palindrome-distance($str) {
+    my $normalized = $str.lc.subst(/\W/, '', :global);
+    my $reversed = $normalized.flip;
+    levenshtein($normalized, $reversed);
+}
+
+my @tests = 'racecar', 'A man a plan a canal Panama', 
+           'race a car', 'hello world', 'Madam Im Adam';
+
+for @tests -> $test {
+    say "$test: " ~ (is-palindrome($test) ?? 'palindrome' !! 'not palindrome');
+    say "  Distance from palindrome: {palindrome-distance($test)}";
+}
+```
+
+Palindrome detection requires text normalization to handle punctuation  
+and case differences. The `flip` method reverses strings efficiently.  
+Word-level palindromes check sentence structure. Distance calculation  
+shows how far text is from being palindromic.  
+
+## String acronym generation
+
+Creating acronyms and abbreviations from text input.  
+
+```raku
+sub create-acronym($text) {
+    $text.words.map(*.substr(0, 1).uc).join;
+}
+
+sub smart-acronym($text) {
+    my @important-words = $text.lc.words.grep({
+        $_ !~~ /^ (a|an|the|of|in|on|at|by|for|to|and|or|but) $/
+    });
+    @important-words.map(*.substr(0, 1).uc).join;
+}
+
+sub abbreviate($text, $max-length = 10) {
+    return $text if $text.chars <= $max-length;
+    
+    my @words = $text.words;
+    my $result = @words[0];
+    
+    for @words[1..*] -> $word {
+        my $candidate = $result ~ ' ' ~ $word;
+        if $candidate.chars > $max-length {
+            $result ~= ' ' ~ $word.substr(0, 1) ~ '.';
+        } else {
+            $result = $candidate;
+        }
+    }
+    $result;
+}
+
+say create-acronym('Artificial Intelligence');
+say smart-acronym('The United States of America');
+say abbreviate('International Business Machines Corporation', 15);
+```
+
+Acronym generation extracts first letters from words to create  
+abbreviations. Smart acronyms skip common words like articles and  
+prepositions. The abbreviation function balances readability with  
+length constraints, gradually shortening words as needed.  
+
+## String masking and obfuscation
+
+Hiding sensitive information while preserving string structure.  
+
+```raku
+sub mask-email($email) {
+    if $email ~~ /^ (.+) '@' (.+) $/ {
+        my $user = $0;
+        my $domain = $1;
+        my $masked-user = $user.substr(0, 2) ~ '*' x ($user.chars - 2);
+        "$masked-user@$domain";
+    } else {
+        $email;
+    }
+}
+
+sub mask-credit-card($number) {
+    my $digits = $number.subst(/\D/, '', :global);
+    return $number unless $digits.chars >= 12;
+    
+    $digits.substr(0, 4) ~ ' ' ~ 
+    '*' x 4 ~ ' ' ~ 
+    '*' x 4 ~ ' ' ~ 
+    $digits.substr(*-4);
+}
+
+sub redact-words($text, @sensitive-words) {
+    my $result = $text;
+    for @sensitive-words -> $word {
+        $result = $result.subst(
+            rx:i/« $word »/, 
+            '[REDACTED]', 
+            :global
+        );
+    }
+    $result;
+}
+
+say mask-email('john.doe@example.com');
+say mask-credit-card('1234 5678 9012 3456');
+say redact-words('The password is secret123', <password secret123>);
+```
+
+Data masking protects sensitive information while maintaining string  
+structure for testing and logging. Email masking preserves domain  
+information. Credit card masking shows only first and last digits.  
+Word redaction uses word boundaries to avoid partial matches.  
+
+## String word wrapping
+
+Intelligent text wrapping with various formatting options.  
+
+```raku
+sub word-wrap($text, $width = 70) {
+    my @words = $text.words;
+    my @lines;
+    my $current-line = '';
+    
+    for @words -> $word {
+        if ($current-line ~ ' ' ~ $word).chars > $width {
+            @lines.push($current-line) if $current-line;
+            $current-line = $word;
+        } else {
+            $current-line = $current-line 
+                ?? $current-line ~ ' ' ~ $word 
+                !! $word;
+        }
+    }
+    @lines.push($current-line) if $current-line;
+    @lines.join("\n");
+}
+
+sub justify-text($text, $width = 70) {
+    my @lines = word-wrap($text, $width).lines;
+    my @justified;
+    
+    for @lines -> $line {
+        my @words = $line.words;
+        next unless @words > 1;
+        
+        my $spaces-needed = $width - [+] @words.map(*.chars);
+        my $gaps = @words.elems - 1;
+        my $space-per-gap = $spaces-needed div $gaps;
+        my $extra-spaces = $spaces-needed % $gaps;
+        
+        my $justified = @words[0];
+        for 1..^@words -> $i {
+            $justified ~= ' ' x $space-per-gap;
+            $justified ~= ' ' if $i <= $extra-spaces;
+            $justified ~= @words[$i];
+        }
+        @justified.push($justified);
+    }
+    @justified.join("\n");
+}
+
+my $long-text = "This is a very long piece of text that needs to be wrapped " ~
+                "at a specific width to ensure proper formatting and readability " ~
+                "in various display contexts and output formats.";
+
+say word-wrap($long-text, 30);
+say "\n" ~ "=" x 30;
+say justify-text($long-text, 30);
+```
+
+Word wrapping breaks long text into lines without splitting words.  
+The algorithm tracks line length and starts new lines when needed.  
+Justified text distributes extra spaces evenly between words for  
+professional formatting. This is essential for document generation.  
+
+## String similarity percentage
+
+Advanced string comparison with similarity scoring.  
+
+```raku
+sub similarity-percentage($str1, $str2) {
+    return 100 if $str1 eq $str2;
+    return 0 if $str1.chars == 0 && $str2.chars == 0;
+    
+    my $max-length = max($str1.chars, $str2.chars);
+    my $distance = levenshtein($str1, $str2);
+    
+    (($max-length - $distance) / $max-length * 100).round(2);
+}
+
+sub jaccard-similarity($str1, $str2) {
+    my $set1 = set($str1.lc.comb);
+    my $set2 = set($str2.lc.comb);
+    
+    my $intersection = $set1 ∩ $set2;
+    my $union = $set1 ∪ $set2;
+    
+    return 0 if $union.elems == 0;
+    ($intersection.elems / $union.elems * 100).round(2);
+}
+
+sub soundex($str) {
+    my $s = $str.uc.subst(/\W/, '', :global);
+    return '' unless $s;
+    
+    my $first = $s.substr(0, 1);
+    $s = $s.subst(/[AEIOUHWY]/, '', :global);
+    $s = $s.trans('BFPVCGJKQSXZDTLMNR' => '111122222222334556');
+    $s = $s.subst(/(.)$0+/, {$0}, :global);
+    
+    ($first ~ $s ~ '000').substr(0, 4);
+}
+
+my @test-pairs = 
+    ['kitten', 'sitting'],
+    ['hello', 'hallo'],
+    ['raku', 'perl'],
+    ['smith', 'smyth'];
+
+for @test-pairs -> [$str1, $str2] {
+    say "$str1 vs $str2:";
+    say "  Levenshtein similarity: {similarity-percentage($str1, $str2)}%";
+    say "  Jaccard similarity: {jaccard-similarity($str1, $str2)}%";
+    say "  Soundex: {soundex($str1)} vs {soundex($str2)}";
+    say "";
+}
+```
+
+String similarity algorithms measure text relatedness using different  
+approaches. Levenshtein similarity uses edit distance. Jaccard similarity  
+compares character sets. Soundex handles phonetic similarity for names.  
+These metrics enable fuzzy matching and data deduplication.  
