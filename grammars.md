@@ -221,10 +221,10 @@ Building a grammar to parse comma-separated values.
 
 ```raku
 grammar CSV {
-    rule TOP { <line>+ % \n }
+    rule TOP { [ <line> \n? ]* }
     rule line { <field>+ % ',' }
     token field { <quoted> | <unquoted> }
-    token quoted { '"' <( <-["]>* )> '"' }
+    token quoted { '"' ( <-["]>* ) '"' }
     token unquoted { <-[,\n"]>+ }
 }
 
@@ -236,7 +236,7 @@ END
 
 if CSV.parse($csv-data) -> $match {
     for $match<line> -> $line {
-        say "Fields: {$line<field>.join(' | ')}";
+        say "Fields: {$line<field>.map({ $_<quoted> ?? $_<quoted>[0].Str !! $_.Str }).join(' | ')}";
     }
 }
 ```
