@@ -232,51 +232,14 @@ say $newline;
 
 ## Regular expressions
 
-Pattern matching and extraction using regex.  
+For comprehensive regex documentation and examples, see `regex.md`.  
 
 ```raku
 my $text = 'Contact: john@example.com or call 555-1234';
 
+# Basic pattern matching
 say $text ~~ /\w+ '@' \w+ '.' \w+/;
 say $text ~~ /\d**3 '-' \d**4/;
-
-if $text ~~ /(\w+) '@' (\w+) '.' (\w+)/ {
-    say "User: $0, Domain: $1.$2";
-}
-```
-
-## String extraction with regex
-
-Extracting specific patterns from strings.  
-
-```raku
-my $log = '2023-12-25 14:30:15 ERROR Database connection failed';
-
-if $log ~~ /(\d**4 '-' \d**2 '-' \d**2) ' ' (\d**2 ':' \d**2 ':' \d**2) ' ' (\w+) ' ' (.+)/ {
-    say "Date: $0";
-    say "Time: $1";
-    say "Level: $2";
-    say "Message: $3";
-}
-```
-
-## String validation
-
-Checking if strings match specific patterns.  
-
-```raku
-sub is-email($email) {
-    $email ~~ /^ \w+ '@' \w+ '.' \w+ $/
-}
-
-sub is-phone($phone) {
-    $phone ~~ /^ \d**3 '-' \d**3 '-' \d**4 $/
-}
-
-say is-email('user@domain.com');
-say is-email('invalid-email');
-say is-phone('555-123-4567');
-say is-phone('not-a-phone');
 ```
 
 ## String encoding
@@ -571,16 +534,8 @@ sub tokenize($text) {
     @tokens;
 }
 
-sub extract-numbers($text) {
-    $text.comb(/\d+/).map(+*);
-}
-
-sub extract-emails($text) {
-    $text.comb(/\w+ '@' \w+ ['.' \w+]+/);
-}
-
 my $sample = "Contact John (age: 25) at john@example.com or call 555-1234.";
 say tokenize($sample);
-say extract-numbers($sample);
-say extract-emails($sample);
+
+# For extracting numbers and emails from text, see regex.md for examples.
 ```
