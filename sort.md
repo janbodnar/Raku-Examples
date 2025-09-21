@@ -67,13 +67,15 @@ say @words.sort({.lc}); # (Apple, aPPle, banana, Cherry)
 
 ## Stable sorting with `sort-by`
 
-The `sort-by` method is stable, meaning that elements that compare as equal will remain in their original relative order.
+The `.chars` syntax is a shorthand for `{ .chars }`, extracting the length of each string  
+for sorting. The output shows the words sorted by increasing length, with stability  
+preserved for equal lengths.
 
 ```raku
 my @words = <a apple b banana c cherry>;
 
 # Sort by length (stable)
-say @words.sort-by({.chars}); # (a b c apple banana cherry)
+say @words.sort(*.chars); # (a b c apple banana cherry)
 ```
 
 ## Sorting Pairs
