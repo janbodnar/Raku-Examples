@@ -109,14 +109,13 @@ Converting multi-argument functions into chains of single-argument functions.
 
 ```raku
 sub curry(&func) {
-    my $sig = &func.signature;
-    my $arity = $sig.params.elems;
-    
-    multi curried($arg) {
-        sub (*@rest) { func($arg, |@rest) }
+    sub ($a) {
+        sub ($b) {
+            sub ($c) {
+                func($a, $b, $c)
+            }
+        }
     }
-    
-    return &curried;
 }
 
 sub add($a, $b, $c) { $a + $b + $c }
