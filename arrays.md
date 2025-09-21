@@ -1,5 +1,15 @@
 # Arrays 
 
+Arrays are one of the fundamental data structures in Raku, providing a flexible  
+and efficient way to store, access, and manipulate ordered collections of data.  
+Arrays in Raku are mutable, can contain elements of any type, and come with  
+a rich set of built-in methods for traversal, transformation, searching, sorting,  
+and more. This chapter explores the many features and idioms of Raku arrays, from  
+basic definition and indexing to advanced operations like chunking, set algebra,  
+and memory management. Whether you're new to Raku or looking to deepen your   
+understanding, the following sections will provide practical examples and  
+explanations for working with arrays effectively.
+
 Arrays are mutable data structures.  They are created with the `@` sigil.  
 
 
