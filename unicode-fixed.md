@@ -39,9 +39,9 @@ my $text = "Aα1₂🎵";
 for $text.comb -> $char {
     say "$char:";
     say "  Code point: U+{$char.ord.base(16)}";
-    say "  Is letter: {$char ~~ /\p{Letter}/}";
-    say "  Is number: {$char ~~ /\p{Number}/}";
-    say "  Is symbol: {$char ~~ /\p{Symbol}/}";
+    say "  Is letter: {$char.uniprop('General_Category') ~~ /^L/ ?? 'Yes' !! 'No'}";
+    say "  Is number: {$char.uniprop('General_Category') ~~ /^N/ ?? 'Yes' !! 'No'}";
+    say "  Is symbol: {$char.uniprop('General_Category') ~~ /^S/ ?? 'Yes' !! 'No'}";
     say "  Category: {$char.uniprop('General_Category')}";
     say "  Script: {$char.uniprop('Script')}";
     say "---";
@@ -50,8 +50,7 @@ for $text.comb -> $char {
 
 Unicode character properties provide detailed classification information.
 The `uniprop` method accesses Unicode properties like General_Category
-and Script. Pattern matching with `\p{Property}` enables filtering
-characters by their Unicode classification.
+and Script. 
 
 ## Unicode normalization
 
