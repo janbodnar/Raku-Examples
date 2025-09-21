@@ -141,19 +141,19 @@ my $text = "Hello 世界 🌍";
 # Encode to different formats
 my $utf8 = $text.encode('utf8');
 my $utf16 = $text.encode('utf16');
-my $utf32 = $text.encode('utf32');
+# my $utf32 = $text.encode('utf32be');
 
 say "UTF-8 bytes: {$utf8.elems}";
 say "UTF-16 bytes: {$utf16.elems}";
-say "UTF-32 bytes: {$utf32.elems}";
+# say "UTF-32 bytes: {$utf32.elems}";
 
 # Decode back to strings
 say "Decoded UTF-8: {$utf8.decode('utf8')}";
 say "Decoded UTF-16: {$utf16.decode('utf16')}";
 
 # Handle encoding errors
-my $invalid = Buf.new(0xFF, 0xFE, 0xFF);
-say "With replacement: {$invalid.decode('utf8', :replacement)}";
+# my $invalid = Buf.new(0xFF, 0xFE, 0xFF);
+# say "With replacement: {try $invalid.decode('utf8', :replacement) // 'error'}";
 ```
 
 Unicode encoding converts strings to byte sequences for storage and
