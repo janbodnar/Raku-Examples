@@ -35,7 +35,7 @@ my @words = <apple banana cherry date elderberry>;
 say @numbers.grep(* %% 2);           # (2 4 6 8 10)
 say @numbers.grep(* > 5);            # (6 7 8 9 10)
 say @words.grep(*.chars > 5);        # (banana cherry elderberry)
-say @words.grep(/^[aeiou]/);         # (apple elderberry)
+say @words.grep(/^[aeiou]/);         # ()
 ```
 
 The `grep` method filters collections using predicates. Combine with  
