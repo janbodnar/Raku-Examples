@@ -1,9 +1,9 @@
-# Array 
+# Arrays 
 
 Arrays are mutable data structures.  They are created with the `@` sigil.  
 
 
-array vs list  
+## Array vs list  
 
 ```raku
 # array
@@ -15,6 +15,8 @@ my $vals = (1, 2, 3, 4, 5);
 say $vals.^name;
 ```
 
+## elems
+
 `elems` returns the size of the list  
 
 ```raku
@@ -22,6 +24,8 @@ my @vals = 1, 2, 3, 4, 5;
 say @vals.elems;
 say @vals;
 ```
+
+## Define arrays
 
 define arrays with sequence & range operators  
 
@@ -38,6 +42,8 @@ say @vals3;
 my @vals4 = 'a'..'z';
 say @vals4;
 ```
+
+## First/last element
 
 get first/last elements
 
@@ -57,7 +63,7 @@ say @vals[0];
 say @vals[*-1];
 ```
 
-keys & values  
+## keys & values  
 
 ```raku
 my @words = <sky blue rock forest book nice cool nap>;
@@ -66,7 +72,7 @@ say @words.keys;
 say @words.values;
 ```
 
-typed arrays  
+## typed arrays  
 
 ```raku
 my Str @words = 'sky', 'blue', 'rock', 'forest', 'book', 'nice', 'cool', 'nap';
@@ -78,6 +84,8 @@ say @words2.WHAT;
 my @words3 is Array[Str] = 'sky', 'blue', 'rock', 'forest', 'book', 'nice', 'cool', 'nap';
 say @words3.WHAT;
 ```
+
+## Traversing arrays
 
 for loop  
 
@@ -100,8 +108,7 @@ loop (my $i=0; $i < $n; $i++) {
 }
 ```
 
-
-Indexing & head & tail  
+## Indexing & head & tail  
 
 ```raku
 my @vals = (1, 2, 3, 4, 5);
@@ -110,6 +117,8 @@ say @vals[2];
 say @vals.head;
 say @vals.tail;
 ```
+
+## The push & prepend
 
 typed arrays; push & prepend methods  
 
