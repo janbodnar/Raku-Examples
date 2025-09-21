@@ -70,8 +70,8 @@ say "Decomposed code points: {$decomposed.codes} codes";
 
 
 # Canonical forms
-say "NFC: {$decomposed.NFC.chars} chars";    # Composed
-say "NFD: {$composed.NFD.chars} chars";      # Decomposed
+say "NFC: {$decomposed.NFC.Str.chars} chars";    # Composed
+say "NFD: {$composed.NFD.Str.chars} chars";      # Decomposed
 ```
 
 Unicode normalization ensures consistent text representation. NFC
