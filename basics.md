@@ -405,7 +405,8 @@ Managing errors gracefully with try/CATCH blocks.
 ```raku
 # Basic exception handling
 try {
-    my $result = 10 / 0;
+    my $result = 10 / 0;  # Creates a Failure object
+    say $result;          # Accessing the Failure throws the exception
     CATCH {
         when X::Numeric::DivideByZero {
             say "Cannot divide by zero!";
@@ -427,8 +428,13 @@ try {
 ```
 
 The `try/CATCH` construct handles exceptions. Different exception  
-types can be caught with specific `when` clauses. Use `die` to  
-throw custom exceptions.  
+types can be caught with specific when clauses. Use die to  
+throw custom exceptions. Note that operations like division by zero  
+return Failure objects, which only throw exceptions when accessed  
+(e.g., via say or assignment to another variable). This allows  
+deferred error handling.  
+
+
 
 ## Basic classes
 
