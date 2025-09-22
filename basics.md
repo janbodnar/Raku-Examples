@@ -469,6 +469,7 @@ my $text = "hello world";
 # Standard method calls
 say $text.uc;            # HELLO WORLD
 say $text.chars;         # 11
+say $text.words;         # (hello world)
 say $text.words.elems;   # 2
 
 # Method chaining  
