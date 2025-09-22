@@ -163,8 +163,8 @@ my $a = True;
 my $b = False;
 my $x = 10;
 
-say $a and $b;           # False
-say $a or $b;            # True  
+say ($a and $b);         # False
+say ($a or $b);          # True  
 say not $a;              # False
 say $a && $b;            # False (alternative syntax)
 say $a || $b;            # True (alternative syntax)
