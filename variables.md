@@ -131,7 +131,7 @@ Declaring variables with specific type constraints for safety.
 my Int $count = 10;
 my Str $message = 'Hello';
 my Bool $flag = True;
-my Num $pi = 3.14159;
+my Num $pi = 3.14159e0;
 
 say $count;
 say $message;
