@@ -707,12 +707,13 @@ C symbol, letting you give native functions friendlier Raku names.
 use NativeCall;
 
 sub c-abs(int32 $n)      returns int32 is native is symbol('abs')      { * }
+# labs returns the absolute value of a long (int64) integer
 sub c-labs(int64 $n)     returns int64 is native is symbol('labs')     { * }
 sub c-strlen(Str $s)     returns size_t is native is symbol('strlen')  { * }
 
-say c-abs(-99);           # 99
-say c-labs(-9_999_999_999);   # 9999999999
-say c-strlen("Raku");    # 4
+say c-abs(-99);                # 99
+say c-labs(-9_999_999_999);    # 9999999999  (absolute value of -9_999_999_999)
+say c-strlen("Raku");          # 4
 ```
 
 `is symbol` is essential when a C symbol name clashes with a Raku  
