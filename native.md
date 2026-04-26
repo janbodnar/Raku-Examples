@@ -2,6 +2,53 @@
 
 
 
+## Curl example
+
+fetch title of example.com
+
+```raku
+#!/usr/bin/env raku
+
+use NativeCall;
+
+constant CURLOPT_URL           = 10000 + 2;
+constant CURLOPT_WRITEFUNCTION = 20000 + 11;
+
+sub curl_easy_init()                                          returns Pointer is native('curl', v4) { * }
+sub curl_easy_setopt_str(Pointer, int32, Pointer)               returns int32  is native('curl', v4) is symbol('curl_easy_setopt') { * }
+sub curl_easy_setopt_long(Pointer, int32, int64)                returns int32  is native('curl', v4) is symbol('curl_easy_setopt') { * }
+sub curl_easy_setopt_cb(Pointer $curl, int32 $opt, &callback (Pointer, size_t, size_t, Pointer --> size_t))
+                     returns int32 is native('curl', v4) is symbol('curl_easy_setopt') { * }
+sub curl_easy_perform(Pointer)                                returns int32  is native('curl', v4) { * }
+sub curl_easy_cleanup(Pointer)                                             is native('curl', v4) { * }
+
+my $content = '';
+
+my &write-callback = sub (Pointer $ptr, size_t $size, size_t $nmemb, Pointer --> size_t) {
+    my $bytes = $size * $nmemb;
+    $content ~= nativecast(Str, $ptr).substr(0, $bytes);
+    $bytes;
+}
+
+my $curl = curl_easy_init();
+
+my $url = 'https://example.com';
+my $url-buf = CArray[uint8].new($url.encode.list);
+$url-buf[$url.chars] = 0;
+curl_easy_setopt_str($curl, CURLOPT_URL, nativecast(Pointer, $url-buf));
+curl_easy_setopt_cb($curl, CURLOPT_WRITEFUNCTION, &write-callback);
+
+my $ret = curl_easy_perform($curl);
+curl_easy_cleanup($curl);
+
+if $ret == 0 {
+    $content ~~ /:i '<title>' (.*?) '</title>' /;
+    say "Title: {~$0}" if $0;
+} else {
+    say "Error: curl_easy_perform returned $ret";
+}
+```
+
 ## GTK 3 example
 
 ```raku
