@@ -352,6 +352,29 @@ automatically by NativeCall. `num64` corresponds to C's `double`. Numeric
 literals must carry the `e` exponent suffix so Raku treats them as  
 `num64` rather than `Int` when calling native-typed parameters.  
 
+---
+
+```raku
+#!/usr/bin/env raku
+
+use NativeCall;
+
+# Load the real libm shared object (on many systems libm.so is a linker
+# script, which NativeCall cannot load directly). Explicitly target
+# libm.so.6 which is the ELF shared library.
+my constant LIBM = 'libm.so.6';
+
+sub sin(num64 $x) returns num64 is native(LIBM) { * }
+sub cos(num64 $x) returns num64 is native(LIBM) { * }
+sub sqrt(num64 $x) returns num64 is native(LIBM) { * }
+sub pow(num64 $base, num64 $exp) returns num64 is native(LIBM) { * }
+
+say sin(0e0);          # 0
+say cos(0e0);          # 1
+say sqrt(2e0);         # 1.4142135623730951
+say pow(2e0, 10e0);    # 1024
+```
+
 ## strlen
 
 `strlen` returns the number of bytes in a null-terminated C string,  
