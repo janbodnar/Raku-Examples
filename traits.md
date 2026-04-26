@@ -1,5 +1,3 @@
-# Traits
-
 # Traits in Raku  
 
 Traits in Raku are compile-time modifiers that attach metadata, alter semantics,  
@@ -20,8 +18,8 @@ domain-specific syntax without macros or runtime reflection).
 
 Raku ships with a comprehensive set of built-in traits that cover everyday  
 needs: `is rw` for mutability, `is export` for symbol visibility, `is copy` and  
-`is raw` for parameter semantics, `is DEPRECATED` for forward compatibility, `is  
-native` for foreign function interfaces, and `is required` for attribute  
+`is raw` for parameter semantics, `is DEPRECATED` for forward compatibility, `is native`  
+for foreign function interfaces, and `is required` for attribute  
 validation. Beyond these, the system is fully extensible. By writing your own  
 `multi trait_mod:<is>` (or `<does>`, `<will>`) routines, you can enforce  
 architectural rules, auto-generate boilerplate, validate domain constraints, or  
