@@ -1,6 +1,19 @@
 # The native interface
 
+## Printf function
 
+```raku
+#!/usr/bin/env raku
+
+use NativeCall;
+
+sub printf(Str $format, Str $name, int32 $age) returns int32 is native { * }
+
+my $name = "John Doe";
+my $age  = 34;
+
+printf("Hello, %s! You are %d years old.\n", $name, $age);
+```
 
 ## Curl example
 
