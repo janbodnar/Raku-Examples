@@ -1,13 +1,44 @@
 # Traits
 
-Traits in Raku are compile-time modifiers that change the behaviour of  
-variables, attributes, parameters, subroutines, and classes. They are  
-applied with the `is` or `does` keywords and are processed at compile  
-time, making them zero-cost abstractions that improve both safety and  
-expressiveness. Built-in traits cover access control, parameter passing,  
-deprecation, caching, and native interoperability, while user-defined  
-traits let you extend the language itself. This tutorial walks through  
-the most important built-in traits and shows how to create custom ones.  
+# Traits in Raku  
+
+Traits in Raku are compile-time modifiers that attach metadata, alter semantics,  
+or inject behavior directly into declarations. Unlike passive annotations or  
+attributes in many other languages, Raku traits are deeply integrated into the  
+compiler grammar and apply uniformly across variables, attributes, parameters,  
+subroutines, methods, roles, and classes. They are invoked using three distinct  
+keywords: `is` modifies how a declaration is interpreted or constrained, `does`  
+composes roles (Raku’s equivalent to PHP/Rust-style traits), and `will` attaches  
+blocks or phasers that execute at declaration time or later.  
+
+Because traits are resolved during compilation, they impose zero runtime  
+overhead. The compiler executes trait handlers—special `trait_mod` routines that  
+can inspect, validate, or transform declarations before the program runs. This  
+compile-time execution enables both stronger safety (catching configuration or  
+type errors early) and greater expressiveness (allowing declarative,  
+domain-specific syntax without macros or runtime reflection).  
+
+Raku ships with a comprehensive set of built-in traits that cover everyday  
+needs: `is rw` for mutability, `is export` for symbol visibility, `is copy` and  
+`is raw` for parameter semantics, `is DEPRECATED` for forward compatibility, `is  
+native` for foreign function interfaces, and `is required` for attribute  
+validation. Beyond these, the system is fully extensible. By writing your own  
+`multi trait_mod:<is>` (or `<does>`, `<will>`) routines, you can enforce  
+architectural rules, auto-generate boilerplate, validate domain constraints, or  
+introduce new language-like constructs.  
+
+*(Note on naming: Raku’s “traits” are conceptually distinct from the `trait`  
+keyword in PHP or Rust, which refer to reusable method bundles or behavioral  
+contracts. In Raku, that role is filled by `role`s; traits are strictly  
+compile-time declaration modifiers.)*  
+
+This tutorial walks through the most important built-in traits, demonstrates how  
+they interact with Raku’s type and scope system, and provides step-by-step  
+guidance for authoring custom traits. By the end, you’ll understand how to  
+leverage traits to write cleaner, more declarative code and safely extend the  
+language to match your domain’s needs.  
+
+  
 
 ## Read-write attribute
 
