@@ -14,13 +14,13 @@ use NativeCall;
 constant CURLOPT_URL           = 10000 + 2;
 constant CURLOPT_WRITEFUNCTION = 20000 + 11;
 
-sub curl_easy_init()                                          returns Pointer is native('curl', v4) { * }
-sub curl_easy_setopt_str(Pointer, int32, Pointer)               returns int32  is native('curl', v4) is symbol('curl_easy_setopt') { * }
-sub curl_easy_setopt_long(Pointer, int32, int64)                returns int32  is native('curl', v4) is symbol('curl_easy_setopt') { * }
+sub curl_easy_init() returns Pointer is native('curl', v4) { * }
+sub curl_easy_setopt_str(Pointer, int32, Pointer) returns int32  is native('curl', v4) is symbol('curl_easy_setopt') { * }
+sub curl_easy_setopt_long(Pointer, int32, int64) returns int32  is native('curl', v4) is symbol('curl_easy_setopt') { * }
 sub curl_easy_setopt_cb(Pointer $curl, int32 $opt, &callback (Pointer, size_t, size_t, Pointer --> size_t))
                      returns int32 is native('curl', v4) is symbol('curl_easy_setopt') { * }
-sub curl_easy_perform(Pointer)                                returns int32  is native('curl', v4) { * }
-sub curl_easy_cleanup(Pointer)                                             is native('curl', v4) { * }
+sub curl_easy_perform(Pointer) returns int32  is native('curl', v4) { * }
+sub curl_easy_cleanup(Pointer) is native('curl', v4) { * }
 
 my $content = '';
 
