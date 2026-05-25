@@ -148,8 +148,8 @@ say %h.sort(*.value).reverse;
 ```
 
 `.sort` on a `Map` returns a sorted list of `Pair` objects. Pass a  
-comparator block or a key-extractor (`*.value`) to sort by an arbitrary  
-criterion; chain `.reverse` for descending order.  
+comparator block or a key-extractor (e.g. `*.value`) to sort by an  
+arbitrary criterion; chain `.reverse` for descending order.  
 
 ## Filtering with grep
 
@@ -495,6 +495,7 @@ Converting a `Map` to a JSON string and back with `JSON::Fast`.
 
 ```raku
 # Requires: zef install JSON::Fast
+# (examples are commented out so the file is readable without the module)
 # use JSON::Fast;
 # 
 # my %cfg is Map = host => 'db', port => 5432, ssl => True;
@@ -578,7 +579,7 @@ my %m = Map.new(1, 'one', 2, 'two');
 
 say %m{1};     # 'one'  — works because 1 coerces to "1"
 say %m{"1"};   # 'one'  — same key
-say 1 eq "1";  # True   — keys are strings
+say ~1 eq "1"; # True   — tilde forces string form before comparison
 ```
 
 Integer and other non-string keys are silently coerced to `Str` during  
@@ -681,7 +682,9 @@ uses string keys by default, and has no insertion-order guarantee.
 my %m is Map = a => 1;
 say %m<a>;
 
-# JS: const m = new Map([['a', 1]]); console.log(m.get('a'));
+# JS equivalent (mutable):
+# const m = new Map([['a', 1]]);
+# console.log(m.get('a'));
 ```
 
 ### Ruby Hash
